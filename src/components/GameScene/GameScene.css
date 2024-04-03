@@ -1,0 +1,11 @@
+.game-scene {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.button-connect {
+    display: flex;
+    justify-content: space-around;
+    height: calc(100vh - 100px);
+}

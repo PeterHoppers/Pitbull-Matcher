@@ -1,33 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import AudioPlayer from 'react-h5-audio-player';
-import 'react-h5-audio-player/lib/styles.css';
+import GameScene from './components/GameScene/GameScene';
 
+import { SongInfo, shuffleArray, songList } from './songInfo';
+
+//Add option to select different types of game modes
+//Read how many correct answers were made, and ask them to try again or pick another mode
 function App() {
   const [selectedId, setSelectedId] = useState(0);
 
-  const folderName = "BackInTime";
-  const trackName = "backInTimeTTS";
+  let usedSongs: SongInfo[] = [];
+
+  for (let index : number = 0; index < songList.length; index++) {
+      const songInfo : SongInfo = songList[index];
+      songInfo.setId(index);
+      usedSongs.push(songInfo);
+  }
+
+  usedSongs = shuffleArray(usedSongs);
+  usedSongs = usedSongs.slice(0, 10);
+
+  let songListOptions = [...usedSongs]; //so that we don't shuffle the used songs list
+  songListOptions = shuffleArray(songListOptions);  
 
   return (
     <>
-      <AudioPlayer
-        autoPlay
-        src={`/Pitbull-Matcher/audio/${folderName}/${trackName}.mp3`}
-        onPlay={e => console.log("onPlay")}
-        // other props here
-      />
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      
+        <GameScene
+          optionList = {usedSongs}
+          songList = {songListOptions}
+        />
     </>
   )
 }

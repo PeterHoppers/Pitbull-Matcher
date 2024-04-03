@@ -1,0 +1,17 @@
+.button-connect {
+    display: flex;
+    justify-content: space-around;
+    height: calc(100vh - 100px);
+}
+
+.group-button-holder {
+    display: flex;    
+    flex-direction: column;
+    gap: 3vh;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.group-button-holder > .selected-button {
+    outline: 4px solid white;
+}
