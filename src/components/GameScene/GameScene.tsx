@@ -49,7 +49,6 @@ function GameScene({optionList, songList} : GameSceneProps) {
         }
     }
 
-    //go from SongInfo to GroupButtonInfo
     const optionButtons: GroupButtonInfo[] = optionList.map((info, index) => {
         return {name: "Option " + (index + 1), id: info.id};
     });

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import GameScene from './components/GameScene/GameScene';
 
@@ -7,8 +6,6 @@ import { SongInfo, shuffleArray, songList } from './songInfo';
 //Add option to select different types of game modes
 //Read how many correct answers were made, and ask them to try again or pick another mode
 function App() {
-  const [selectedId, setSelectedId] = useState(0);
-
   let usedSongs: SongInfo[] = [];
 
   for (let index : number = 0; index < songList.length; index++) {
