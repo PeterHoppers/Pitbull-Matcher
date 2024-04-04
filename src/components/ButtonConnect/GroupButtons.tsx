@@ -19,7 +19,7 @@ function GroupButtons({groupButtonId, buttons, selectedButtonIndex, onSelectedBu
         return <button 
                 key={button.id.toString()} 
                 id={`button-${groupButtonId}-${index}`}
-                onClick={() => setSelectedButton(button.id)}
+                onClick={() => setSelectedButton(index)}
                 className = {buttonClass}>
                     {button.name}
             </button>

@@ -16,42 +16,37 @@ interface GameSceneProps {
 //Add checking logic to see how many correct guesses someone did make
 
 function GameScene({optionList, songList} : GameSceneProps) {
-    const [optionId, setOptionId] = useState<number | null>(null);
-    const [songTitleId, setTitleId] = useState<number | null>(null);
+    const [optionIndex, setOptionIndex] = useState<number | null>(null);
+    const [songTitleIndex, setTitleIndex] = useState<number | null>(null);
     const [guesses, setGuesses] = useState<Guess[]>([]);
 
     useEffect(() => {
-        if (optionId !== null && songTitleId !== null) {
-            addGuess(optionId, songTitleId);
-            setOptionId(null);
-            setTitleId(null);
+        if (optionIndex !== null && songTitleIndex !== null) {
+            addGuess(optionIndex, songTitleIndex);
+            setOptionIndex(null);
+            setTitleIndex(null);
         }
-    }, [optionId, songTitleId]);
+    }, [optionIndex, songTitleIndex]);
 
-    function addGuess(optionId: number, songId: number) {
+    function addGuess(optionIndex: number, songIndex: number) {
         let currentGuesses = guesses;
         //Remove old lines when one that uses one of the previous ids gets created
-        currentGuesses = currentGuesses.filter(x => x.optionId !== optionId);
-        currentGuesses = currentGuesses.filter(x => x.songId !== songId);
-        const optionIndex = getIndexFromId(optionId, optionList);
-        const songIndex = getIndexFromId(songId, songList);       
+        currentGuesses = currentGuesses.filter(x => x.optionId !== optionIndex);
+        currentGuesses = currentGuesses.filter(x => x.songId !== songIndex);
+        const optionId = optionList[optionIndex].id;
+        const songId = optionList[songIndex].id; 
         
         currentGuesses.push({optionId: optionId, optionIndex: optionIndex, songId: songId, songIndex: songIndex});
 
         setGuesses(currentGuesses);
     }
 
-    function onGroupButtonUpdate(buttonId: number, groupId: GroupButtonType) {
+    function onGroupButtonUpdate(buttonIndex: number, groupId: GroupButtonType) {
         if (groupId == GroupButtonType.Option) {
-            setOptionId(buttonId);
+            setOptionIndex(buttonIndex);
         } else if (groupId == GroupButtonType.SongTitle) {
-            setTitleId(buttonId);
+            setTitleIndex(buttonIndex);
         }
-    }
-
-    function getIndexFromId(id: number | null, songInfos: SongInfo[]) {
-        const findingIndex = (x: SongInfo) => x.id == id;
-        return songInfos.findIndex(findingIndex);
     }
 
     //go from SongInfo to GroupButtonInfo
@@ -63,7 +58,7 @@ function GameScene({optionList, songList} : GameSceneProps) {
         return {name: info.songName, id: info.id};
     });
 
-    const selectedSongInfo = (optionId != null) ? optionList.find(x => x.id == optionId) : null;
+    const selectedSongInfo = (optionIndex != null) ? optionList[optionIndex] : null;
 
     return (
         <div className="game-scene">
@@ -71,13 +66,13 @@ function GameScene({optionList, songList} : GameSceneProps) {
                 <GroupButtons
                     groupButtonId={GroupButtonType.Option}
                     buttons = {optionButtons}
-                    selectedButtonIndex={getIndexFromId(optionId, optionList)}
+                    selectedButtonIndex={optionIndex}
                     onSelectedButton={onGroupButtonUpdate}                        
                 />
                 <GroupButtons
                     groupButtonId={GroupButtonType.SongTitle}
                     buttons = {songButtons}
-                    selectedButtonIndex={getIndexFromId(songTitleId, songList)}
+                    selectedButtonIndex={songTitleIndex}
                     onSelectedButton={onGroupButtonUpdate}
                 />
             </div>
