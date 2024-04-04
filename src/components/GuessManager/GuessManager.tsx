@@ -26,11 +26,10 @@ function GuessManager({guesses, revealAnswers}: GuessManagerProps) {
         const x2 = point2Element.offsetLeft;
         const y2 = point2Element.offsetTop + (point2Element.offsetHeight / 2);
 
-        const isCorrect = (guess.optionId == guess.songId);
         let classText = "";
 
         if (revealAnswers) {
-            if (isCorrect) {
+            if (guess.isCorrect) {
                 classText = "is-correct";
             } else {
                 classText = "is-incorrect";

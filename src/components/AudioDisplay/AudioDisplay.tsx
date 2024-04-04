@@ -2,15 +2,20 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 
 import './AudioDisplay.css';
-import { SongInfo } from '../../songInfo';
+import { SongInfo, songType } from '../../songInfo';
 
-function AudioDisplay({audioSrc}: {audioSrc: SongInfo | null | undefined}) {
+interface AudioDisplayProps {
+    audioSrc: SongInfo | null | undefined;
+    songType: songType
+}
+
+function AudioDisplay({audioSrc, songType}: AudioDisplayProps) {
     return (
         <div className='audio-display'>
             {audioSrc ? 
                 <AudioPlayer
                     autoPlay
-                    src={audioSrc.getRapSongURL()}
+                    src={audioSrc.getSongURL(songType)}
                 />
                 : <></>
             }

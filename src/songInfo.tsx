@@ -13,10 +13,10 @@ class SongInfo {
     }
 
     getRapSongURL() {
-        return this.#getSongURL("rap");
+        return this.getSongURL(songType.Rap);
     }
 
-    #getSongURL(songType: string) {
+    getSongURL(songType: string) {
         return `/Pitbull-Matcher/audio/${this.fileName}/${songType}.mp3`;
     }
 }
@@ -40,8 +40,8 @@ const songList = Object.freeze([
 ]);
 
 enum songType {
-    Rap,
-    TTS
+    Rap = "rap",
+    TTS = "tts"
 }    
 
 function shuffleArray<T>(array: T[]): T[] {

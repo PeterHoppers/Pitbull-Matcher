@@ -11,6 +11,14 @@
     margin: 1em;
 }
 
+.group-button-holder button {
+    width: 285px;
+}
+
+.group-button-holder button:hover {
+    outline: 2px solid white;
+}
+
 .group-button-holder > .selected-button {
     outline: 4px solid white;
 }

@@ -3,19 +3,22 @@ import GroupButtons from "../ButtonConnect/GroupButtons";
 import { useState, useEffect } from 'react'
 
 import "./GameScene.css";
-import { SongInfo} from "../../songInfo";
+import { SongInfo, songType} from "../../songInfo";
 import GroupButtonType from "../ButtonConnect/GroupButtonType";
 import GroupButtonInfo from "../ButtonConnect/GroupButtonInfo";
 import GuessManager from "../GuessManager/GuessManager";
 import Guess from "../GuessManager/Guess";
+import EndGameModel from "../Model/EndGameModel";
 
 interface GameSceneProps {
     optionList: SongInfo[];
     songList: SongInfo[];
+    songType: songType;
+    onSelectType: (songType: songType | null) => void;
 }
 //Add checking logic to see how many correct guesses someone did make
 
-function GameScene({optionList, songList} : GameSceneProps) {
+function GameScene({optionList, songList, songType, onSelectType} : GameSceneProps) {
     const [optionIndex, setOptionIndex] = useState<number | null>(null);
     const [songTitleIndex, setTitleIndex] = useState<number | null>(null);
     const [guesses, setGuesses] = useState<Guess[]>([]);
@@ -36,8 +39,9 @@ function GameScene({optionList, songList} : GameSceneProps) {
         currentGuesses = currentGuesses.filter(x => x.songIndex !== songIndex);
         const optionId = optionList[optionIndex].id;
         const songId = songList[songIndex].id; 
+        const isCorrect = (optionId == songId);
         
-        currentGuesses.push({optionId: optionId, optionIndex: optionIndex, songId: songId, songIndex: songIndex});
+        currentGuesses.push({optionId: optionId, optionIndex: optionIndex, songId: songId, songIndex: songIndex, isCorrect: isCorrect});
 
         setGuesses(currentGuesses);
     }
@@ -54,6 +58,11 @@ function GameScene({optionList, songList} : GameSceneProps) {
         setReveal(true);
     }
 
+    function clearGuesses() {
+        setGuesses([]);
+        setReveal(false);
+    }
+
     const optionButtons: GroupButtonInfo[] = optionList.map((info, index) => {
         return {name: "Option " + (index + 1), id: info.id};
     });
@@ -67,13 +76,25 @@ function GameScene({optionList, songList} : GameSceneProps) {
     return (
         <div className="game-scene">
             {(guesses.length == songList.length) && 
-                <button
-                    className="game-scene__reveal-button"
-                    onClick={onRevealAnswers}
-                >
+                <div className="game-scene__reveal-holder">
+                    <button
+                        className="game-scene__reveal-button"
+                        onClick={onRevealAnswers}
+                    >
                     Check Answers
-                </button>                
+                </button>    
+                </div>                            
             }
+
+            {(revealAnswer) && 
+                <EndGameModel      
+                    amountCorrect={guesses.filter(x => x.isCorrect).length}
+                    amountPossible={guesses.length}          
+                    onSelectType = {onSelectType}
+                    onReset = {clearGuesses}
+                />
+            }
+
             <div className="button-connect">
                 <GroupButtons
                     groupButtonId={GroupButtonType.Option}
@@ -90,6 +111,7 @@ function GameScene({optionList, songList} : GameSceneProps) {
             </div>
             <AudioDisplay
                 audioSrc={selectedSongInfo}
+                songType={songType}
             /> 
             <GuessManager
                 guesses={guesses}

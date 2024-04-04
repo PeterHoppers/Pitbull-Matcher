@@ -1,0 +1,13 @@
+.pitbull-model {
+    width: 100vw;
+}
+
+.pitbull-model p {
+    font-size: 1.5em;
+}
+
+.select-type-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
