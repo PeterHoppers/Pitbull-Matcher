@@ -7,9 +7,8 @@
 .group-button-holder {
     display: flex;    
     flex-direction: column;
-    gap: 3vh;
-    height: 100%;
     justify-content: space-evenly;
+    margin: 1em;
 }
 
 .group-button-holder > .selected-button {
