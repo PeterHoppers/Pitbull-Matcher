@@ -1,4 +1,4 @@
-#svg {
+#guess-svg {
     position: absolute;
     z-index: -10;
     top: 0;
@@ -7,7 +7,15 @@
     width: 100%;
 }
 
-#svg > line {
+line {
     stroke-width: 2px;
     stroke: aliceblue;
+}
+
+line.is-correct {
+    stroke: green;
+}
+
+line.is-incorrect {
+    stroke: red;
 }

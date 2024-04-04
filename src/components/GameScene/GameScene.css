@@ -4,6 +4,10 @@
     height: 100%;
 }
 
+.game-scene__reveal-button {
+    position: absolute;
+}
+
 .button-connect {
     display: flex;
     justify-content: space-around;

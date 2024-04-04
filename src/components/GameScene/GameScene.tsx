@@ -19,6 +19,7 @@ function GameScene({optionList, songList} : GameSceneProps) {
     const [optionIndex, setOptionIndex] = useState<number | null>(null);
     const [songTitleIndex, setTitleIndex] = useState<number | null>(null);
     const [guesses, setGuesses] = useState<Guess[]>([]);
+    const [revealAnswer, setReveal] = useState<boolean>(false);
 
     useEffect(() => {
         if (optionIndex !== null && songTitleIndex !== null) {
@@ -31,10 +32,10 @@ function GameScene({optionList, songList} : GameSceneProps) {
     function addGuess(optionIndex: number, songIndex: number) {
         let currentGuesses = guesses;
         //Remove old lines when one that uses one of the previous ids gets created
-        currentGuesses = currentGuesses.filter(x => x.optionId !== optionIndex);
-        currentGuesses = currentGuesses.filter(x => x.songId !== songIndex);
+        currentGuesses = currentGuesses.filter(x => x.optionIndex !== optionIndex);
+        currentGuesses = currentGuesses.filter(x => x.songIndex !== songIndex);
         const optionId = optionList[optionIndex].id;
-        const songId = optionList[songIndex].id; 
+        const songId = songList[songIndex].id; 
         
         currentGuesses.push({optionId: optionId, optionIndex: optionIndex, songId: songId, songIndex: songIndex});
 
@@ -49,6 +50,10 @@ function GameScene({optionList, songList} : GameSceneProps) {
         }
     }
 
+    function onRevealAnswers() {
+        setReveal(true);
+    }
+
     const optionButtons: GroupButtonInfo[] = optionList.map((info, index) => {
         return {name: "Option " + (index + 1), id: info.id};
     });
@@ -61,6 +66,14 @@ function GameScene({optionList, songList} : GameSceneProps) {
 
     return (
         <div className="game-scene">
+            {(guesses.length == songList.length) && 
+                <button
+                    className="game-scene__reveal-button"
+                    onClick={onRevealAnswers}
+                >
+                    Check Answers
+                </button>                
+            }
             <div className="button-connect">
                 <GroupButtons
                     groupButtonId={GroupButtonType.Option}
@@ -80,6 +93,7 @@ function GameScene({optionList, songList} : GameSceneProps) {
             /> 
             <GuessManager
                 guesses={guesses}
+                revealAnswers={revealAnswer}
             />
         </div>
     );
