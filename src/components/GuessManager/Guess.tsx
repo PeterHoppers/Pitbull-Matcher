@@ -1,6 +1,8 @@
 interface Guess {
     optionIndex: number,
-    songIndex: number
+    optionId: number,
+    songIndex: number,
+    songId: number
 }
 
 export default Guess;

@@ -13,11 +13,6 @@ interface GameSceneProps {
     optionList: SongInfo[];
     songList: SongInfo[];
 }
-
-//TODO: Add lines between the buttons when selected a pair: https://www.npmjs.com/package/leader-line
-//TODO: Add ability to clear out the selections whenever a pair is made
-
-//Implement enum for the audio display so that it can choose to play
 //Add checking logic to see how many correct guesses someone did make
 
 function GameScene({optionList, songList} : GameSceneProps) {
@@ -25,32 +20,24 @@ function GameScene({optionList, songList} : GameSceneProps) {
     const [songTitleId, setTitleId] = useState<number | null>(null);
     const [guesses, setGuesses] = useState<Guess[]>([]);
 
-    console.log(guesses);
-
-    let selectedOptionIndex : number | null = null;    
-    if (optionId !== null) {
-        selectedOptionIndex = getIndexFromId(optionId, optionList);
-    }   
-    
-    let selectedSongIndex : number | null = null;    
-    if (songTitleId !== null) {
-        selectedSongIndex = getIndexFromId(songTitleId, songList);
-    }   
-
     useEffect(() => {
-        if (selectedOptionIndex !== null && selectedSongIndex !== null) {
-            addGuess(selectedOptionIndex, selectedSongIndex);
+        if (optionId !== null && songTitleId !== null) {
+            addGuess(optionId, songTitleId);
             setOptionId(null);
             setTitleId(null);
         }
-    }, [selectedOptionIndex, selectedSongIndex]);
+    }, [optionId, songTitleId]);
 
-    function addGuess(optionIndex: number, songIndex: number) {
+    function addGuess(optionId: number, songId: number) {
         let currentGuesses = guesses;
         //Remove old lines when one that uses one of the previous ids gets created
-        currentGuesses = currentGuesses.filter(x => x.optionIndex !== optionIndex);
-        currentGuesses = currentGuesses.filter(x => x.songIndex !== songIndex);
-        currentGuesses.push({optionIndex: optionIndex, songIndex: songIndex});
+        currentGuesses = currentGuesses.filter(x => x.optionId !== optionId);
+        currentGuesses = currentGuesses.filter(x => x.songId !== songId);
+        const optionIndex = getIndexFromId(optionId, optionList);
+        const songIndex = getIndexFromId(songId, songList);       
+        
+        currentGuesses.push({optionId: optionId, optionIndex: optionIndex, songId: songId, songIndex: songIndex});
+
         setGuesses(currentGuesses);
     }
 
@@ -62,7 +49,7 @@ function GameScene({optionList, songList} : GameSceneProps) {
         }
     }
 
-    function getIndexFromId(id: number, songInfos: SongInfo[]) {
+    function getIndexFromId(id: number | null, songInfos: SongInfo[]) {
         const findingIndex = (x: SongInfo) => x.id == id;
         return songInfos.findIndex(findingIndex);
     }
@@ -84,20 +71,22 @@ function GameScene({optionList, songList} : GameSceneProps) {
                 <GroupButtons
                     groupButtonId={GroupButtonType.Option}
                     buttons = {optionButtons}
-                    selectedButtonIndex={selectedOptionIndex}
+                    selectedButtonIndex={getIndexFromId(optionId, optionList)}
                     onSelectedButton={onGroupButtonUpdate}                        
                 />
                 <GroupButtons
                     groupButtonId={GroupButtonType.SongTitle}
                     buttons = {songButtons}
-                    selectedButtonIndex={selectedSongIndex}
+                    selectedButtonIndex={getIndexFromId(songTitleId, songList)}
                     onSelectedButton={onGroupButtonUpdate}
                 />
             </div>
             <AudioDisplay
                 audioSrc={selectedSongInfo}
             /> 
-            <GuessManager/>
+            <GuessManager
+                guesses={guesses}
+            />
         </div>
     );
 }

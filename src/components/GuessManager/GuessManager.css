@@ -1,0 +1,13 @@
+#svg {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 100%;
+}
+
+#svg > line {
+    stroke-width: 2px;
+    stroke: aliceblue;
+}
