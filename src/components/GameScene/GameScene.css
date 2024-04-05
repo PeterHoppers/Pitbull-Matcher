@@ -4,15 +4,41 @@
     height: 100%;
 }
 
+.game-scene-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    overflow: hidden;
+}
+
+.game-scene-background div {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    justify-content: center;
+    display: flex;
+}
+
+.game-scene-background img {
+    max-width: min(500px, 95%);
+    position: absolute;
+    bottom: 50px;    
+    padding-right: 20px;
+    filter: blur(1.5px) contrast(0.9) sepia(0.2);
+}
+
 .game-scene__reveal-holder {
     position: absolute;
     display: flex;
     width: 100%;
-    padding-top: 1em;
+    bottom: 0;
+    height: 100px;
 }
 
 .game-scene__reveal-button {
     margin: auto;
+    font-size: 1.5em;
 }
 
 .button-connect {

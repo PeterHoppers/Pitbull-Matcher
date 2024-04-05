@@ -12,7 +12,7 @@
 }
 
 .group-button-holder button {
-    width: 285px;
+    width: 18em;
 }
 
 .group-button-holder button:hover {
@@ -25,4 +25,17 @@
 
 .group-button-holder > .selected-button {
     outline: 5px solid white;
+}
+
+@media (max-width: 1020px) {
+    .group-button-holder button {
+        font-size: 10px;
+        width: 15em;
+    }
+}
+
+@media (max-height: 500px) {
+    .group-button-holder {
+        margin: 0;
+    }
 }

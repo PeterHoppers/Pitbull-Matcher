@@ -73,17 +73,17 @@ function GameScene({optionList, songList, songType, onSelectType, onReplay} : Ga
         return {name: info.songName, id: info.id};
     });
 
-    const selectedSongInfo = (optionIndex != null) ? optionList[optionIndex] : null;
+    const selectedSongInfo = (optionIndex != null && !revealAnswer) ? optionList[optionIndex] : null;
 
     return (
         <div className="game-scene">
-            {(guesses.length == songList.length) && 
+            {(guesses.length == songList.length && selectedSongInfo == null && !revealAnswer) && 
                 <div className="game-scene__reveal-holder">
                     <button
                         className="game-scene__reveal-button"
                         onClick={onRevealAnswers}
                     >
-                    Check Answers
+                    Submit Answers
                 </button>    
                 </div>                            
             }
@@ -96,6 +96,12 @@ function GameScene({optionList, songList, songType, onSelectType, onReplay} : Ga
                     onReset = {clearGuesses}
                 />
             }
+
+            <div className="game-scene-background">
+                <div>                    
+                    <img src="/Pitbull-Matcher/pitbullHead-svg.svg"></img>
+                </div>
+            </div>
 
             <div className="button-connect">
                 <GroupButtons

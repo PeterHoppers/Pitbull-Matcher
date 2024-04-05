@@ -29,7 +29,7 @@ const songList = Object.freeze([
     new SongInfo("FeelThisMoment", "Feel This Moment"),
     new SongInfo("Fireball", "Fireball"),
     new SongInfo("GiveMeEverything", "Give Me Everything"),
-    new SongInfo("HeyBaby", "Hey Baby (Drop It to the Floor)"),
+    new SongInfo("HeyBaby", "Hey Baby"),
     new SongInfo("HotelRoomService", "Hotel Room Service"),
     new SongInfo("IKnowYouWantMe", "I Know You Want Me"),
     new SongInfo("ILikeIt", "I Like It"),

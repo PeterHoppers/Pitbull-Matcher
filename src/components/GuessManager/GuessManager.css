@@ -8,9 +8,9 @@
 }
 
 line {
-    stroke-width: 3px;
+    stroke-width: 5px;
     stroke: white;
-    stroke-opacity: .85;
+    stroke-opacity: .9;
 }
 
 line.is-correct {
