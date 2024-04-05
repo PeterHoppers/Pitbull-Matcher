@@ -45,8 +45,8 @@ function SelectType({onSelectType}: SelectTypeProps) {
                 <h2><i>A quizzical celebration of one of the rappers of all time!</i></h2>
                 <h3>How To Play</h3>
                 <ul className="pitbull-list">
-                    <li>There'll be two sets of buttons: one labelled "Track #" and another labelled with Pitbull song titles</li>
-                    <li>Selecting an "Track" button will play an audio track</li>
+                    <li>There'll be two sets of buttons: one labelled "Track #" and one labelled with Pitbull song titles</li>
+                    <li>Selecting a "Track" button will play an audio track</li>
                     <li>Your goal is to then select the song title that audio track is from</li>
                 </ul>
                 <h3>Select Category</h3>
