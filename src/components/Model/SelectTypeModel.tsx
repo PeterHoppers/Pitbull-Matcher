@@ -21,6 +21,11 @@ function SelectType({onSelectType}: SelectTypeProps) {
                 >
                     Text To Speech
                 </button>
+                <button
+                    onClick={() => onSelectType(songType.Instrumental)}    
+                >
+                    Instrumental
+                </button>
 
             </div>
         </div>

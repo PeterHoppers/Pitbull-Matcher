@@ -1,4 +1,5 @@
 import Guess from "./Guess";
+import { useState, useEffect } from "react";
 
 import "./GuessManager.css";
 
@@ -7,8 +8,26 @@ interface GuessManagerProps {
     revealAnswers: boolean
 }
 
-//TODO: on resize, redraw the lines
 function GuessManager({guesses, revealAnswers}: GuessManagerProps) {
+    const [width, setWidth] = useState<number>();
+
+    // This function updates the state thus re-render components
+    // We need the lines to update themselves whenever the screen size changes
+    const resizeHandler = () => {
+        const width = window.innerWidth;
+        setWidth(width);
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', resizeHandler);
+
+        // Cleanup function
+        // Remove the event listener when the component is unmounted
+        return () => {
+            window.removeEventListener('resize', resizeHandler);
+        }
+    }, []);
+
     const guessesDrawn = guesses.map((guess, index) => {
         const point1Element = document.getElementById(`button-0-${guess.optionIndex}`);
         const point2Element = document.getElementById(`button-1-${guess.songIndex}`);
@@ -48,7 +67,7 @@ function GuessManager({guesses, revealAnswers}: GuessManagerProps) {
 
     return (
         <>
-            <svg id="guess-svg">                
+            <svg id="guess-svg" data-width={width}>                
                 {guessesDrawn}
             </svg>
         </>

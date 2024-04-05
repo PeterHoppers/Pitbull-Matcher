@@ -35,13 +35,15 @@ const songList = Object.freeze([
     new SongInfo("ILikeIt", "I Like It"),
     new SongInfo("InternationLove", "International Love"),
     new SongInfo("OnTheFloor", "On The Floor"),
+    new SongInfo("RainOverMe", "Rain Over Me"),
     new SongInfo("Timber", "Timber"),
     new SongInfo("TimeOfOurLives", "Time Of Our Lives")
 ]);
 
 enum songType {
     Rap = "rap",
-    TTS = "tts"
+    TTS = "tts",
+    Instrumental = "instrumental",
 }    
 
 function shuffleArray<T>(array: T[]): T[] {

@@ -8,8 +8,9 @@
 }
 
 line {
-    stroke-width: 2px;
-    stroke: aliceblue;
+    stroke-width: 3px;
+    stroke: white;
+    stroke-opacity: .85;
 }
 
 line.is-correct {

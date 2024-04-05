@@ -16,9 +16,13 @@
 }
 
 .group-button-holder button:hover {
+    outline: 3px solid white;
+}
+
+.group-button-holder > .guessed-button {
     outline: 2px solid white;
 }
 
 .group-button-holder > .selected-button {
-    outline: 4px solid white;
+    outline: 5px solid white;
 }

@@ -9,6 +9,7 @@ import { SongInfo, shuffleArray, songList, songType } from './songInfo';
 //Read how many correct answers were made, and ask them to try again or pick another mode
 function App() {
   const [selectedSongType, setSongType] = useState<songType | null>(null);
+  const [timesPlayed, setTimesPlayed] = useState<number>(0);
 
   let usedSongs: SongInfo[] = [];
 
@@ -28,8 +29,14 @@ function App() {
     setSongType(songType);
   }
 
+  function startNewGame(){
+    let currentAttempts = timesPlayed;
+    currentAttempts++;
+    setTimesPlayed(currentAttempts);
+  }
+
   return (
-    <>
+    <div data-types-played={timesPlayed}>
       {(selectedSongType == null) 
         ?
             <SelectType
@@ -41,9 +48,10 @@ function App() {
             songList = {songListOptions}
             songType = {selectedSongType}
             onSelectType={selectSongType}
+            onReplay={startNewGame}
           />
       }        
-    </>
+    </div>
   )
 }
 

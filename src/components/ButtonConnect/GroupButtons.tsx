@@ -6,16 +6,26 @@ interface GroupButtonProps {
     groupButtonId: GroupButtonType;
     buttons: GroupButtonInfo[];
     selectedButtonIndex: number | null;
+    guessedButtonsIndexes: number[];
     onSelectedButton: (buttonId: number, groupId: GroupButtonType) => void
 }
 
-function GroupButtons({groupButtonId, buttons, selectedButtonIndex, onSelectedButton}: GroupButtonProps) {
+function GroupButtons({groupButtonId, buttons, selectedButtonIndex, guessedButtonsIndexes, onSelectedButton}: GroupButtonProps) {
     function setSelectedButton(buttonId: number) {
         onSelectedButton(buttonId, groupButtonId);
     }
 
     const groupButtons = buttons.map((button, index) => {
-        const buttonClass = (index == selectedButtonIndex) ? "selected-button" : "";
+        let buttonClass = "";
+        
+        if (index == selectedButtonIndex) {
+            buttonClass += "selected-button";
+        }
+
+        if (guessedButtonsIndexes.includes(index)) {
+            buttonClass += " guessed-button";
+        }
+
         return <button 
                 key={button.id.toString()} 
                 id={`button-${groupButtonId}-${index}`}

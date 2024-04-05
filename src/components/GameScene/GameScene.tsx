@@ -15,10 +15,11 @@ interface GameSceneProps {
     songList: SongInfo[];
     songType: songType;
     onSelectType: (songType: songType | null) => void;
+    onReplay: () => void;
 }
 //Add checking logic to see how many correct guesses someone did make
 
-function GameScene({optionList, songList, songType, onSelectType} : GameSceneProps) {
+function GameScene({optionList, songList, songType, onSelectType, onReplay} : GameSceneProps) {
     const [optionIndex, setOptionIndex] = useState<number | null>(null);
     const [songTitleIndex, setTitleIndex] = useState<number | null>(null);
     const [guesses, setGuesses] = useState<Guess[]>([]);
@@ -61,6 +62,7 @@ function GameScene({optionList, songList, songType, onSelectType} : GameScenePro
     function clearGuesses() {
         setGuesses([]);
         setReveal(false);
+        onReplay();
     }
 
     const optionButtons: GroupButtonInfo[] = optionList.map((info, index) => {
@@ -100,12 +102,14 @@ function GameScene({optionList, songList, songType, onSelectType} : GameScenePro
                     groupButtonId={GroupButtonType.Option}
                     buttons = {optionButtons}
                     selectedButtonIndex={optionIndex}
+                    guessedButtonsIndexes = {guesses.map(guess => guess.optionIndex)}
                     onSelectedButton={onGroupButtonUpdate}                        
                 />
                 <GroupButtons
                     groupButtonId={GroupButtonType.SongTitle}
                     buttons = {songButtons}
                     selectedButtonIndex={songTitleIndex}
+                    guessedButtonsIndexes = {guesses.map(guess => guess.songIndex)}
                     onSelectedButton={onGroupButtonUpdate}
                 />
             </div>
