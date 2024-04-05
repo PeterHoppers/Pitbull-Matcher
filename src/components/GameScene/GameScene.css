@@ -21,9 +21,9 @@
 }
 
 .game-scene-background img {
-    max-width: min(500px, 95%);
+    max-width: min(475px, 95%);
     position: absolute;
-    bottom: 50px;    
+    bottom: 75px;    
     padding-right: 20px;
     filter: blur(1.5px) contrast(0.9) sepia(0.2);
 }

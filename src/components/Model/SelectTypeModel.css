@@ -1,13 +1,53 @@
 .pitbull-model {
+    --model-breakpoint: 800px;
     width: 100vw;
 }
 
-.pitbull-model p {
+.pitbull-model__content {
+    max-width: var(--model-breakpoint);
+    margin: auto;
+    padding: 1em;
+}
+
+.pitbull-model h1 {
+    margin: .5em 0;
+}
+
+.pitbull-model h3 {
     font-size: 1.5em;
+    text-decoration: underline;
+    margin: .75em 0;
+}
+
+.pitbull-list {
+    text-align: left;
 }
 
 .select-type-buttons {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: var(--button-flex-direction);
     gap: 1em;
+    padding: 0 1em;
+}
+
+.select-type-buttons button {
+    text-transform: capitalize;
+    width: 180px;
+}
+
+.selected-button-rap .select-type-rap,
+.selected-button-instrumental .select-type-instrumental,
+.selected-button-tts .select-type-tts {
+    outline: var(--selection-width) solid var(--main-accent-color);
+}
+
+.category-description {
+    font-size: 1.25em;
+    font-style: italic;
+}
+
+.pitbull-model__confirm-btn {
+    font-size: 1.25em;
 }

@@ -13,7 +13,7 @@ function EndGameModel({amountCorrect, amountPossible, onSelectType, onReset} : E
     return (
         <div className="end-game-model-holder">
             <div className="end-game-model">
-                <p>{`Your score was ${amountCorrect} out of ${amountPossible}.`}</p>
+                <p>{`You correctly guessed ${amountCorrect} out of ${amountPossible}.`}</p>
                 <div className="end-game-model__button-holder">
                     <button
                         onClick={() => onReset()}
@@ -23,7 +23,7 @@ function EndGameModel({amountCorrect, amountPossible, onSelectType, onReset} : E
                     <button
                         onClick={() => onSelectType(null)}
                     >
-                        Pick New Mode
+                        Select New Category
                     </button>
                 </div>
                 

@@ -16,15 +16,15 @@
 }
 
 .group-button-holder button:hover {
-    outline: 3px solid white;
+    outline: calc(var(--selection-width) - 2px) solid var(--main-accent-color);
 }
 
 .group-button-holder > .guessed-button {
-    outline: 2px solid white;
+    outline: calc(var(--selection-width) - 3px) solid var(--main-accent-color);
 }
 
 .group-button-holder > .selected-button {
-    outline: 5px solid white;
+    outline: var(--selection-width) solid var(--main-accent-color);
 }
 
 @media (max-width: 1020px) {

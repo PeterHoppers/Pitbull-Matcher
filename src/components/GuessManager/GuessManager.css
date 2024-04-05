@@ -9,7 +9,7 @@
 
 line {
     stroke-width: 5px;
-    stroke: white;
+    stroke: var(--main-accent-color);
     stroke-opacity: .9;
 }
 

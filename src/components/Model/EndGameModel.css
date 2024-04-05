@@ -10,7 +10,7 @@
 .end-game-model {
     background-color: rgba(12, 12, 12, .75);
     border-radius: 1em;
-    width: 50%;
+    width: min(100%, 768px);
     margin: auto;
     padding: 1em;
 }
@@ -22,5 +22,11 @@
 .end-game-model__button-holder {
     display: flex;
     justify-content: center;
+    flex-direction: var(--button-flex-direction);
     gap: 2em;
+}
+
+
+.end-game-model__button-holder button {
+    border-color: var(--main-accent-color);
 }

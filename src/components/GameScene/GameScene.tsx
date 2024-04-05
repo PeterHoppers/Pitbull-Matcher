@@ -66,7 +66,7 @@ function GameScene({optionList, songList, songType, onSelectType, onReplay} : Ga
     }
 
     const optionButtons: GroupButtonInfo[] = optionList.map((info, index) => {
-        return {name: "Option " + (index + 1), id: info.id};
+        return {name: "Track " + (index + 1), id: info.id};
     });
 
     const songButtons: GroupButtonInfo[] = songList.map(info => {

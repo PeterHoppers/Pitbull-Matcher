@@ -3,7 +3,7 @@
     margin-top: auto;
     display: flex;
     justify-content: center;
-    background-color: #dddddd;
+    background-color: var(--secondary-accent-color);
     height: 100px;
 }
 
