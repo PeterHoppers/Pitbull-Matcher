@@ -41,9 +41,11 @@ const songList = Object.freeze([
 ]);
 
 enum songType {
+    Hook = "hook",
     Rap = "rap",
     TTS = "tts",
     Instrumental = "instrumental",
+    Reverse = "reverse"
 }    
 
 function shuffleArray<T>(array: T[]): T[] {

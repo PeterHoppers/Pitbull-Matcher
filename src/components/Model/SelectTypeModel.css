@@ -29,7 +29,8 @@
     align-items: center;
     flex-direction: var(--button-flex-direction);
     gap: 1em;
-    padding: 0 1em;
+    padding: 0 2em;
+    flex-wrap: wrap;
 }
 
 .select-type-buttons button {
@@ -39,7 +40,9 @@
 
 .selected-button-rap .select-type-rap,
 .selected-button-instrumental .select-type-instrumental,
-.selected-button-tts .select-type-tts {
+.selected-button-tts .select-type-tts,
+.selected-button-reverse .select-type-reverse,
+.selected-button-hook .select-type-hook {
     outline: var(--selection-width) solid var(--main-accent-color);
 }
 

@@ -25,6 +25,9 @@ function SelectType({onSelectType}: SelectTypeProps) {
 
     let categoryInfo = "";
     switch (selectedMode) {
+        case songType.Hook:
+            categoryInfo = "This introductory category highlights the most momentous parts of each song, which Pitbull most often graciously spotlights others in rather than himself.";
+            break; 
         case songType.Rap:
             categoryInfo = "Listen to Pitbull dive into diverse topics throughout his discography and deduce which song each example of linguistic prowess originates from.";
             break;  
@@ -33,6 +36,9 @@ function SelectType({onSelectType}: SelectTypeProps) {
             break;
         case songType.Instrumental:
             categoryInfo = "Analyze Pitbull's handcrafted instrumental wonders after they've been detached from the rest of the composition."
+            break;
+        case songType.Reverse:
+            categoryInfo = "Myths hint at secret knowledge that can be gleamed from reversing songs. Pair these reversed raps with their songs and perhaps reveal their hidden truths."
             break;
         default:
             break;      

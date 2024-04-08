@@ -40,9 +40,3 @@
     margin: auto;
     font-size: 1.5em;
 }
-
-.button-connect {
-    display: flex;
-    justify-content: space-around;
-    height: calc(100vh - 100px);
-}
