@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+}
+
+#game-iframe {
+    width: 100vw;
+    height: 100vh;
+    border: 0;
+}

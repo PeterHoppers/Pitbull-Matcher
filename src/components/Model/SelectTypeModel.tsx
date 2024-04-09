@@ -72,6 +72,10 @@ function SelectType({onSelectType}: SelectTypeProps) {
                     
                 }
             </section>
+            <div className="pitbull-model-background">
+                <img src="/Pitbull-Matcher/pitbull-two.png"></img>
+                <img src="/Pitbull-Matcher/pitbull-one.png"></img>
+            </div>
         </div>
     )
 }

@@ -54,3 +54,32 @@
 .pitbull-model__confirm-btn {
     font-size: 1.25em;
 }
+
+.pitbull-model-background {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -10;
+}
+
+.pitbull-model-background img {
+    height: 700px;
+    position: absolute;
+    bottom: 0;
+    filter: blur(1px);
+}
+
+.pitbull-model-background img:first-of-type {
+    left: 0;
+}
+
+.pitbull-model-background img:last-of-type {
+    right: 0;
+}
+
+@media screen and (max-width: 1400px) {
+    .pitbull-model-background {
+        display: none;
+    }
+}
