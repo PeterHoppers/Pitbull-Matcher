@@ -1,6 +1,6 @@
 import AudioDisplay from "../AudioDisplay/AudioDisplay";
 import GroupButtons from "../ButtonConnect/GroupButtons";
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import "./GameScene.css";
 import { SongInfo, songType} from "../../songInfo";
@@ -25,13 +25,11 @@ function GameScene({optionList, songList, songType, onSelectType, onReplay} : Ga
     const [guesses, setGuesses] = useState<Guess[]>([]);
     const [revealAnswer, setReveal] = useState<boolean>(false);
 
-    useEffect(() => {
-        if (optionIndex !== null && songTitleIndex !== null) {
-            addGuess(optionIndex, songTitleIndex);
-            setOptionIndex(null);
-            setTitleIndex(null);
-        }
-    }, [optionIndex, songTitleIndex]);
+    if (optionIndex !== null && songTitleIndex !== null) {
+        addGuess(optionIndex, songTitleIndex);
+        setOptionIndex(null);
+        setTitleIndex(null);
+    }
 
     function addGuess(optionIndex: number, songIndex: number) {
         let currentGuesses = guesses;
